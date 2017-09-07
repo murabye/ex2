@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using MyLib;
 using static System.Math;
 
@@ -53,5 +50,55 @@ namespace ex2
                 OC.Stay();
             }
         }
+    }
+
+
+    // класс для считывания и записи в файл
+    internal class FileInOut
+    {
+        private string[] _obj; // строки, которые нужно считать
+        private int position = 0; // позиция считывателя
+
+        /* конструктор для ввода из файла
+         * name - название файла
+         * НЕ ПОДДЕРЖИВАЕТСЯ выбор пути, все в папку исходную
+         */
+        public FileInOut(string name)
+        {
+            var _reader = new StreamReader(name + ".txt");
+            var strings = _reader.ReadToEnd();
+            _obj = strings.Split('\n', ' ');
+
+            _reader.Close();
+        }
+
+        // возрващает считываемую строку, делит по пробелам
+        public string Next()
+        {
+            try
+            {
+                return _obj[position++];
+            }
+            catch (Exception e)
+            {
+                return " ";
+            }
+        }
+
+        /* вывод в файл name строки obj
+         * name вводится без расширения
+         * НЕ ПОДДЕРЖИВАЕТСЯ выбор пути, все в папку исходную
+         */
+        public static void ToFile(string name, string obj)
+        {
+            var f = new StreamWriter(name + ".txt");
+            var strings = obj.Split('\n');
+
+            foreach (var t in strings)
+                f.WriteLine(t);
+
+            f.Close();
+        }
+
     }
 }
