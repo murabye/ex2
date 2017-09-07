@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using MyLib;
 using static System.Math;
 
 namespace ex2
@@ -46,9 +45,8 @@ namespace ex2
                     + Cos(lat1) * Cos(lat2) * Cos(long2 - long1);
                 
                 double ans = Atan2(y, x) * radius;
-                
-                Console.WriteLine("\nОтвет: " + ans);
-                OC.Stay();
+
+                FileInOut.ToFile("output", ans.ToString("#.##").Replace(',', '.'));
             }
         }
     }
