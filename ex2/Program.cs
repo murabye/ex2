@@ -18,13 +18,14 @@ namespace ex2
             {
                 double radius; // радиус, от 100 до 10 000 
                 double lat1, lat2, long1, long2;
+                var reader = new FileInOut("input");
 
                 // инициализация
-                radius = Ask.RealNum("Введите радиус: ", 10, 10000);
-                lat1 = Ask.RealNum("Введите широту первой точки: ", -90, 90);
-                long1 = Ask.RealNum("Введите долготу первой точки: ", -180, 180);
-                lat2 = Ask.RealNum("Введите широту второй точки: ", -90, 90);
-                long2 = Ask.RealNum("Введите долготу второй точки: ", -180, 180);
+                radius = Double.Parse(reader.Next().Replace('.', ','));
+                lat1 =  Double.Parse(reader.Next().Replace('.', ','));
+                long1 = Double.Parse(reader.Next().Replace('.', ','));
+                lat2 =  Double.Parse(reader.Next().Replace('.', ','));
+                long2 = Double.Parse(reader.Next().Replace('.', ','));
 
                 // перевод в радианы
                 lat1 = ToRad(lat1);
